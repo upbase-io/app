@@ -1,180 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Upbase - Install AdHoc Build</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>Upbase - Install AdHoc Build</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <img src="app-icon.png" alt="Upbase" class="app-icon" onerror="this.src='https://via.placeholder.com/120/4A90E2/ffffff?text=Upbase'">
-            <h1>Upbase</h1>
-            <p class="subtitle">iOS AdHoc Distribution</p>
-        </div>
-
-        <!-- Version Info -->
-        <div class="version-card">
-            <div class="version-info">
-                <span class="label">Version</span>
-                <span class="value" id="version">Loading...</span>
-            </div>
-            <div class="version-info">
-                <span class="label">Build</span>
-                <span class="value" id="build">Loading...</span>
-            </div>
-            <div class="version-info">
-                <span class="label">Size</span>
-                <span class="value" id="size">~65 MB</span>
-            </div>
-        </div>
-
-        <!-- Install Button -->
-        <div class="install-section">
-            <a href="#" id="install-btn" class="install-button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                <span>Install on This Device</span>
-            </a>
-            <p class="install-note">⚠️ This will open Settings to install the profile</p>
-        </div>
-
-        <!-- QR Code Section -->
-        <div class="qr-section">
-            <h3>📱 Install on Another Device</h3>
-            <p>Scan this QR code with your iPhone Camera app</p>
-            <div id="qrcode"></div>
-        </div>
-
-        <!-- Instructions -->
-        <div class="instructions">
-            <h3>📋 Installation Steps</h3>
-            <ol>
-                <li>Tap the <strong>"Install on This Device"</strong> button above</li>
-                <li>Settings will open with a profile prompt</li>
-                <li>Tap <strong>"Install"</strong> in the top-right corner</li>
-                <li>Enter your device passcode if prompted</li>
-                <li>Tap <strong>"Install"</strong> again to confirm</li>
-                <li>Wait for the installation to complete</li>
-                <li>The app will appear on your Home Screen</li>
-            </ol>
-        </div>
-
-        <!-- Trust Instructions -->
-        <div class="trust-section">
-            <h3>⚙️ Trust Enterprise Certificate</h3>
-            <p>If the app doesn't open after installation:</p>
-            <ol>
-                <li>Go to <strong>Settings → General → VPN & Device Management</strong></li>
-                <li>Find <strong>"Upbase"</strong> under <strong>"Enterprise App"</strong></li>
-                <li>Tap it and select <strong>"Trust"</strong></li>
-                <li>Confirm by tapping <strong>"Trust"</strong> again</li>
-            </ol>
-        </div>
-
-        <!-- System Requirements -->
-        <div class="requirements">
-            <h3>📱 Requirements</h3>
-            <ul>
-                <li>✅ iOS 13.0 or later</li>
-                <li>✅ ~100 MB free storage</li>
-                <li>✅ Wi-Fi connection (recommended)</li>
-                <li>⚠️ Enterprise profile trust required</li>
-            </ul>
-        </div>
-
-        <!-- Available Versions -->
-        <div class="versions">
-            <h3>📦 Available Versions</h3>
-            <div id="versions-list">
-                <div class="version-item loading">Loading versions...</div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>Built with ❤️ by Upbase Team</p>
-            <p class="small">© 2025 Upbase. Internal distribution only.</p>
-            <div class="links">
-                <a href="https://github.com/upbase-io" target="_blank">GitHub</a>
-                <span>•</span>
-                <a href="mailto:support@upbase.io">Support</a>
-                <span>•</span>
-                <a href="#" id="refresh-btn">🔄 Refresh</a>
-            </div>
-        </div>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <img src="app-icon.png" alt="Upbase" class="app-icon">
+      <h1>Upbase</h1>
+      <p class="subtitle">iOS AdHoc Distribution</p>
     </div>
 
-    <!-- QR Code Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    
-    <script>
-        // Configuration - UPDATE THESE VALUES
-        const CONFIG = {
-            // Base URL for GitHub Pages (update to your actual URL)
-            baseUrl: 'https://upbase-io.github.io/app',
-            
-            // Latest version info (can be fetched from versions.json)
-            currentVersion: '1.1.24',
-            currentBuild: '250',
-            
-            // Bundle ID
-            bundleId: 'io.upbase.appdc',
-            
-            // App name
-            appName: 'Upbase'
-        };
+    <!-- Version Info -->
+    <div class="version-card">
+      <div class="version-info">
+        <span class="label">Version</span>
+        <span class="value" id="version">Loading...</span>
+      </div>
+      <div class="version-info">
+        <span class="label">Build</span>
+        <span class="value" id="build">Loading...</span>
+      </div>
+      <div class="version-info">
+        <span class="label">Size</span>
+        <span class="value" id="size">~65 MB</span>
+      </div>
+    </div>
 
-        // Update version display
-        document.getElementById('version').textContent = CONFIG.currentVersion;
-        document.getElementById('build').textContent = CONFIG.currentBuild;
+    <!-- Install Button -->
+    <div class="install-section">
+      <a href="#" id="install-btn" class="install-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Install on This Device</span>
+      </a>
+      <p class="install-note">⚠️ This will open Settings to install the profile</p>
+    </div>
 
-        // Generate manifest URL
-        const manifestUrl = `itms-services://?action=download-manifest&url=${CONFIG.baseUrl}/manifest.plist`;
-        
-        // Set install button href
-        const installBtn = document.getElementById('install-btn');
-        installBtn.href = manifestUrl;
+    <!-- QR Code Section -->
+    <div class="qr-section">
+      <h3>📱 Install on Another Device</h3>
+      <p>Scan this QR code with your iPhone Camera app</p>
+      <div id="qrcode"></div>
+    </div>
 
-        // Generate QR Code
-        const qrcode = new QRCode(document.getElementById('qrcode'), {
-            text: window.location.href,
-            width: 200,
-            height: 200,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-        });
+    <!-- Instructions -->
+    <div class="instructions">
+      <h3>📋 Installation Steps</h3>
+      <ol>
+        <li>Tap the <strong>"Install on This Device"</strong> button above</li>
+        <li>Settings will open with a profile prompt</li>
+        <li>Tap <strong>"Install"</strong> in the top-right corner</li>
+        <li>Enter your device passcode if prompted</li>
+        <li>Tap <strong>"Install"</strong> again to confirm</li>
+        <li>Wait for the installation to complete</li>
+        <li>The app will appear on your Home Screen</li>
+      </ol>
+    </div>
 
-        // Load available versions
-        async function loadVersions() {
-            try {
-                const response = await fetch(`${CONFIG.baseUrl}/versions.json`);
-                const versions = await response.json();
-                displayVersions(versions);
-            } catch (error) {
-                console.error('Failed to load versions:', error);
-                document.getElementById('versions-list').innerHTML = 
-                    '<div class="version-item">No previous versions available</div>';
-            }
-        }
+    <!-- Trust Instructions -->
+    <div class="trust-section">
+      <h3>⚙️ Trust Enterprise Certificate</h3>
+      <p>If the app doesn't open after installation:</p>
+      <ol>
+        <li>Go to <strong>Settings → General → VPN & Device Management</strong></li>
+        <li>Find <strong>"Upbase"</strong> under <strong>"Enterprise App"</strong></li>
+        <li>Tap it and select <strong>"Trust"</strong></li>
+        <li>Confirm by tapping <strong>"Trust"</strong> again</li>
+      </ol>
+    </div>
 
-        function displayVersions(versions) {
-            const versionsList = document.getElementById('versions-list');
-            
-            if (!versions || versions.length === 0) {
-                versionsList.innerHTML = '<div class="version-item">No versions available</div>';
-                return;
-            }
+    <!-- System Requirements -->
+    <div class="requirements">
+      <h3>📱 Requirements</h3>
+      <ul>
+        <li>✅ iOS 13.0 or later</li>
+        <li>✅ ~100 MB free storage</li>
+        <li>✅ Wi-Fi connection (recommended)</li>
+        <li>⚠️ Enterprise profile trust required</li>
+      </ul>
+    </div>
 
-            versionsList.innerHTML = versions.map((v, index) => `
+    <!-- Available Versions -->
+    <div class="versions">
+      <h3>📦 Available Versions</h3>
+      <div id="versions-list">
+        <div class="version-item loading">Loading versions...</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Built with ❤️ by Upbase Team</p>
+      <p class="small">© 2025 Upbase. Internal distribution only.</p>
+      <div class="links">
+        <a href="https://github.com/upbase-io" target="_blank">GitHub</a>
+        <span>•</span>
+        <a href="mailto:support@upbase.io">Support</a>
+        <span>•</span>
+        <a href="#" id="refresh-btn">🔄 Refresh</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Code Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <script>
+    // Configuration - UPDATE THESE VALUES
+    const CONFIG = {
+      // Base URL for GitHub Pages (update to your actual URL)
+      baseUrl: 'https://upbase-io.github.io/app',
+
+      // Latest version info (can be fetched from versions.json)
+      currentVersion: '1.1.24',
+      currentBuild: '250',
+
+      // Bundle ID
+      bundleId: 'io.upbase.appdc',
+
+      // App name
+      appName: 'Upbase'
+    };
+
+    // Update version display
+    document.getElementById('version').textContent = CONFIG.currentVersion;
+    document.getElementById('build').textContent = CONFIG.currentBuild;
+
+    // Generate manifest URL
+    const manifestUrl = `itms-services://?action=download-manifest&url=${CONFIG.baseUrl}/manifest.plist`;
+
+    // Set install button href
+    const installBtn = document.getElementById('install-btn');
+    installBtn.href = manifestUrl;
+
+    // Generate QR Code
+    const qrcode = new QRCode(document.getElementById('qrcode'), {
+      text: window.location.href,
+      width: 200,
+      height: 200,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Load available versions
+    async function loadVersions() {
+      try {
+        const response = await fetch(`${CONFIG.baseUrl}/versions.json`);
+        const versions = await response.json();
+        displayVersions(versions);
+      } catch (error) {
+        console.error('Failed to load versions:', error);
+        document.getElementById('versions-list').innerHTML =
+          '<div class="version-item">No previous versions available</div>';
+      }
+    }
+
+    function displayVersions(versions) {
+      const versionsList = document.getElementById('versions-list');
+
+      if (!versions || versions.length === 0) {
+        versionsList.innerHTML = '<div class="version-item">No versions available</div>';
+        return;
+      }
+
+      versionsList.innerHTML = versions.map((v, index) => `
                 <div class="version-item ${index === 0 ? 'current' : ''}">
                     <div class="version-header">
                         <span class="version-name">${v.version} (${v.build})</span>
@@ -196,42 +198,42 @@
                     `}
                 </div>
             `).join('');
-        }
+    }
 
-        // Track install clicks
-        installBtn.addEventListener('click', function(e) {
-            console.log('Install clicked for version:', CONFIG.currentVersion);
-            
-            // Optional: Send analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'install_click', {
-                    'app_version': CONFIG.currentVersion,
-                    'app_build': CONFIG.currentBuild
-                });
-            }
+    // Track install clicks
+    installBtn.addEventListener('click', function (e) {
+      console.log('Install clicked for version:', CONFIG.currentVersion);
+
+      // Optional: Send analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'install_click', {
+          'app_version': CONFIG.currentVersion,
+          'app_build': CONFIG.currentBuild
         });
+      }
+    });
 
-        // Refresh button
-        document.getElementById('refresh-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            location.reload();
-        });
+    // Refresh button
+    document.getElementById('refresh-btn').addEventListener('click', function (e) {
+      e.preventDefault();
+      location.reload();
+    });
 
-        // Auto-detect iOS
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        
-        if (!isIOS) {
-            installBtn.innerHTML = '<span>⚠️ This page is for iOS devices only</span>';
-            installBtn.style.background = '#ff6b6b';
-            installBtn.style.pointerEvents = 'none';
-        }
+    // Auto-detect iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-        // Load versions on page load
-        loadVersions();
+    if (!isIOS) {
+      installBtn.innerHTML = '<span>⚠️ This page is for iOS devices only</span>';
+      installBtn.style.background = '#ff6b6b';
+      installBtn.style.pointerEvents = 'none';
+    }
 
-        // Auto-refresh every 5 minutes to check for new versions
-        setInterval(loadVersions, 5 * 60 * 1000);
-    </script>
+    // Load versions on page load
+    loadVersions();
+
+    // Auto-refresh every 5 minutes to check for new versions
+    setInterval(loadVersions, 5 * 60 * 1000);
+  </script>
 </body>
-</html>
 
+</html>
