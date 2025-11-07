@@ -1,12 +1,12 @@
 [
   {
     "version": "1.1.24",
-    "build": "250",
-    "date": "2025-11-07",
+    "build": "249",
+    "date": "2025-11-08",
     "size": "68.45 MB",
     "manifestUrl": "itms-services://?action=download-manifest&url=https://upbase-io.github.io/app/manifest.plist",
-    "ipaUrl": "https://github.com/upbase-io/app/releases/download/v1.1.24-250/Upbase-iOS-AdHoc-1.1.24-250.ipa",
-    "notes": "Latest stable build with bug fixes and improvements"
+    "ipaUrl": "https://github.com/upbase-io/app/releases/download/v1.1.24-249/Upbase-iOS-AdHoc-1.1.24-249.ipa",
+    "notes": "Fixed: Pipeline error handling, provisioning profiles, decode errors"
   }
 ]
 

@@ -12,7 +12,7 @@
                     <string>software-package</string>
                     <key>url</key>
                     <!-- UPDATE THIS: Direct URL to your IPA file -->
-                    <string>https://github.com/upbase-io/app/releases/download/v1.1.24-250/Upbase-iOS-AdHoc-1.1.24-250.ipa</string>
+                    <string>https://github.com/upbase-io/app/releases/download/v1.1.24-249/Upbase-iOS-AdHoc-1.1.24-249.ipa</string>
                 </dict>
                 <dict>
                     <key>kind</key>
